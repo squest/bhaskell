@@ -1,0 +1,12 @@
+-- IDE & ghci
+-- what's with programming?
+-- defining functions and constants => postulates
+-- primitive types => Num, Bool, String (== /= < <= > >=, + - * / ^ div mod, && || not)
+-- collection types => List & Tuples (: ++)
+-- defining functions => ifs/guards/pattern-matching
+-- lambda functions
+-- types & type classes
+-- recursion
+-- higher order functions
+
+-- Examples :
