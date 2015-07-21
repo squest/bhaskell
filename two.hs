@@ -84,8 +84,25 @@ notElem' e (x:xs)
   | e == x = False
   | otherwise = notElem' e xs
 
-union' xs [] = xs
-union' [] xs = xs
+insert' e [] = [e]
+insert' e (x:xs)
+  | e < x = x : insert' e xs
+  | otherwise = e:x:xs
+
+union' ls [] = ls
+union' ls (x:xs)
+  | elem' x ls = union' ls xs
+  | otherwise = union' (insert' x ls) xs
+
+add x 0 = x
+add a b
+  | b > 0 = add (succ a) (pred b)
+  | otherwise = sub a (- b)
+
+sub a 0 = a
+sub a b
+  | b > 0 = sub (pred a) (pred b)
+  | otherwise = add a (- b)
 
 cats ls1 ls2 = iter (rev ls1) ls2
   where iter [] res = res
@@ -93,7 +110,17 @@ cats ls1 ls2 = iter (rev ls1) ls2
 
 cycle' xs = cats xs $ cycle' xs
 
+delete' e [] = []
+delete' e (x:xs)
+  | e == x = delete' e xs
+  | otherwise = x : delete' e xs
 
+nub' [] = []
+nub' (x:xs) = x:nub' (delete' x xs)
+
+max' a b
+  | a > b = a
+  | otherwise = b
 
 
 
@@ -110,6 +137,16 @@ cycle' xs = cats xs $ cycle' xs
 
 
                 
+
+
+
+
+
+
+
+
+
+
 
 
 
