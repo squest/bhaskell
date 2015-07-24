@@ -105,8 +105,13 @@ sub a b
   | otherwise = add a (- b)
 
 cats ls1 ls2 = iter (rev ls1) ls2
-  where iter [] res = res
+  where x = 100
+        iter [] res = res
         iter (x:xs) res = iter xs (x:res)
+
+coba x
+  | x < 10 = 1
+  | True = 5
 
 cycle' xs = cats xs $ cycle' xs
 
