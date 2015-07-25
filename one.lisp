@@ -23,6 +23,32 @@
        and summing i into res
        finally (return (+ 2 res)))))
 
+(defmacro range (a &optional b i)
+  (if i
+      (let ((m (gensym)))
+	(if (>= b a)
+	    (list 'loop 'for m 'from a 'to (1- b) 'by i
+		  'collect m)
+	    (list 'loop 'for m 'from a 'downto (1+ b) 'by i
+		  'collect m)))
+      (if b
+	  (list 'range a b 1)
+	  (list 'range 0 a 1))))
+
+(defun sum (xs)
+  (loop for i in xs summing i into res finally (return res)))
+
+(defmacro sum1 (xs)
+  (let ((i (gensym))
+	(res (gensym)))
+    `(loop for ,i in ,xs summing ,i into ,res finally (return ,res))))
+
+(defmacro fn (body)
+  `(lambda (%) ,body))
+
+(defmacro fn2 (body)
+  `(lambda (%1 %2) ,body))
+
 (defun nth-sieve (nthi)
   (declare (optimize (speed 3))
 	   (fixnum nthi))
